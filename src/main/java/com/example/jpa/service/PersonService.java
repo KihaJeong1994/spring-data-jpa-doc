@@ -2,9 +2,10 @@ package com.example.jpa.service;
 
 import org.springframework.data.domain.Example;
 
+import com.example.jpa.dto.PersonDto;
 import com.example.jpa.entity.Person;
 
 public interface PersonService {
-    Iterable<Person> findAll(Example<Person> example);
-    Person save(Person person);
+    Iterable<PersonDto> findAll();
+    PersonDto save(PersonDto person);
 }

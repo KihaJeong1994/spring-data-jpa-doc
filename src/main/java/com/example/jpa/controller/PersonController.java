@@ -11,6 +11,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.jpa.dto.PersonDto;
 import com.example.jpa.entity.Person;
 import com.example.jpa.service.PersonService;
 
@@ -24,17 +25,12 @@ public class PersonController {
     private final PersonService personService;
 
     @GetMapping("")
-    public Iterable<Person> findPeople(Person person){
-
-        ExampleMatcher matcher = ExampleMatcher.matching()
-                            .withMatcher("lastname", contains())
-                            .withMatcher("firstname", contains());
-        Example<Person> example = Example.of(person,matcher);
-        return personService.findAll(example);
+    public Iterable<PersonDto> findPeople(){
+        return personService.findAll();
     }
 
     @PostMapping("")
-    public Person save(@RequestBody Person person){
+    public PersonDto save(@RequestBody PersonDto person){
         return personService.save(person);
     }
     

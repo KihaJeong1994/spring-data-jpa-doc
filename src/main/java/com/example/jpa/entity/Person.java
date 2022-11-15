@@ -1,9 +1,13 @@
 package com.example.jpa.entity;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 
 import lombok.Data;
 
@@ -13,9 +17,16 @@ public class Person {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private String id;
+    @Column(name = "person_id")
+    private Long id;
+
     private String firstname;
+
     private String lastname;
+
+    // @ManyToOne(fetch = FetchType.LAZY) //(fetch = FetchType.EAGER)
+    // @JoinColumn(name = "team_id")
+    // private Team team;
 
 
 }
