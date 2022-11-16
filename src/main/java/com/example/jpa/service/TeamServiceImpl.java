@@ -1,16 +1,10 @@
 package com.example.jpa.service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.stream.Collector;
 import java.util.stream.Collectors;
 
-import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
 
-import com.example.jpa.dto.PersonDto;
 import com.example.jpa.dto.TeamDto;
-import com.example.jpa.entity.Person;
 import com.example.jpa.entity.Team;
 import com.example.jpa.repository.TeamRepository;
 

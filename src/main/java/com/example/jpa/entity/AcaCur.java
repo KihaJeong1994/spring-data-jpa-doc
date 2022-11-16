@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,13 +13,11 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
 import org.springframework.beans.BeanUtils;
 
 import com.example.jpa.dto.AcaCurDto;
-import com.example.jpa.dto.ColCurDto;
 
 import lombok.Data;
 
@@ -36,17 +33,15 @@ public class AcaCur {
     @OneToOne(mappedBy = "acaCur")
     private Person person;
 
-    // @OneToOne(cascade = CascadeType.ALL)
-    // // @JoinColumn(name="colCur_id")
-    @ManyToOne //(cascade = CascadeType.ALL)
+    @ManyToOne
     @JoinColumn(name="classGrp_id")
     private ClassGrp classGrp;
 
-    @ManyToMany //(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "AcaCur_ClassOne",
     joinColumns = {@JoinColumn(name="acaCur_id")}
     ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
-    )
+    ) //다대다 관계에서 중간에 연결고리 역할을 해줄 joinTable 생성
     private List<ClassOne> classOnes = new ArrayList<>();
 
     public AcaCurDto convertEntityToDto(){

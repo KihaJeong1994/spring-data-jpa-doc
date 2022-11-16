@@ -8,7 +8,6 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.jpa.dto.TeamDto;
-import com.example.jpa.entity.Team;
 import com.example.jpa.service.TeamService;
 
 import lombok.RequiredArgsConstructor;

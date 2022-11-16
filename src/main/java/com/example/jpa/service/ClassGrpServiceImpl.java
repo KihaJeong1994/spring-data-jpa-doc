@@ -5,14 +5,8 @@ import java.util.stream.Collectors;
 import org.springframework.stereotype.Service;
 
 import com.example.jpa.dto.ClassGrpDto;
-import com.example.jpa.dto.ClassOneDto;
-import com.example.jpa.dto.PersonDto;
 import com.example.jpa.entity.ClassGrp;
-import com.example.jpa.entity.ClassOne;
-import com.example.jpa.entity.Person;
 import com.example.jpa.repository.ClassGrpRepository;
-import com.example.jpa.repository.ClassOneRepository;
-import com.example.jpa.repository.PersonRepository;
 
 import lombok.RequiredArgsConstructor;
 

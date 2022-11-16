@@ -4,7 +4,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
-import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -14,7 +13,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
-import javax.persistence.OneToOne;
 
 import org.springframework.beans.BeanUtils;
 
@@ -37,7 +35,7 @@ public class ClassGrp {
     @OneToMany(mappedBy = "classGrp")
     private List<AcaCur> acaCurs= new ArrayList<>();
 
-    @ManyToMany //(cascade = CascadeType.ALL)
+    @ManyToMany
     @JoinTable(name = "ClassGrp_ClassOne",
     joinColumns = {@JoinColumn(name="classGrp_id")}
     ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}

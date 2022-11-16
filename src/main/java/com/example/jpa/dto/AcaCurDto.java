@@ -7,7 +7,6 @@ import java.util.stream.Collectors;
 import org.springframework.beans.BeanUtils;
 
 import com.example.jpa.entity.AcaCur;
-import com.example.jpa.entity.ColCur;
 
 import lombok.Data;
 
