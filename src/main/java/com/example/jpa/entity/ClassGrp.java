@@ -11,6 +11,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -29,14 +31,17 @@ public class ClassGrp {
     private Long id;
     private String classGrpName;
 
-    @OneToOne(mappedBy = "classGrp")
-    private ColCur colCur;
+    @OneToMany(mappedBy = "classGrp")
+    private List<ColCur> colCurs= new ArrayList<>();
 
-    @OneToOne(mappedBy = "classGrp")
-    private AcaCur acaCur;
+    @OneToMany(mappedBy = "classGrp")
+    private List<AcaCur> acaCurs= new ArrayList<>();
 
-    @OneToMany(cascade = CascadeType.ALL)//mappedby 설정 시 연관관계 테이블 생성x
-    @JoinColumn(name="classGrp_id")
+    @ManyToMany //(cascade = CascadeType.ALL)
+    @JoinTable(name = "ClassGrp_ClassOne",
+    joinColumns = {@JoinColumn(name="classGrp_id")}
+    ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
+    )
     List<ClassOne> classOnes = new ArrayList<>();
 
     public ClassGrpDto convertEntityToDto(){

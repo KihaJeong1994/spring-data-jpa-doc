@@ -1,5 +1,6 @@
 package com.example.jpa.dto;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,7 +17,7 @@ public class TeamDto {
 
     private String name;
     
-    private List<PersonDto> persons;
+    private List<PersonDto> persons = new ArrayList<>();
 
     public Team convertDtoToEntity(){
         Team team = new Team();

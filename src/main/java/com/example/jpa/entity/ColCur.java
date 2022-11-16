@@ -11,6 +11,9 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
+import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 
@@ -32,18 +35,27 @@ public class ColCur {
     @OneToOne(mappedBy = "colCur")
     private Person person;
 
-    @OneToOne(cascade = CascadeType.ALL)
-    // @JoinColumn(name="colCur_id")
+    // @OneToOne(cascade = CascadeType.ALL)
+    // // @JoinColumn(name="colCur_id")
+    @ManyToOne //(cascade = CascadeType.ALL)
+    @JoinColumn(name="classGrp_id")
     private ClassGrp classGrp;
 
-    @OneToMany(cascade = CascadeType.ALL)
-    @JoinColumn(name="colCur_id")
+    // @OneToMany(cascade = CascadeType.ALL)
+    // @JoinColumn(name="colCur_id")
+    @ManyToMany //(cascade = CascadeType.ALL)
+    @JoinTable(name = "ColCur_ClassOne",
+    joinColumns = {@JoinColumn(name="colCur_id")}
+    ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
+    )
     private List<ClassOne> classOnes = new ArrayList<>();
 
     public ColCurDto convertEntityToDto(){
         ColCurDto colCurDto = new ColCurDto();
         BeanUtils.copyProperties(this, colCurDto);
-        colCurDto.setClassGrp(this.getClassGrp().convertEntityToDto());
+        if(this.getClassGrp()!=null){
+            colCurDto.setClassGrp(this.getClassGrp().convertEntityToDto());
+        }
         colCurDto.setClassOnes(this.getClassOnes().stream().map(ClassOne::convertEntityToDto).collect(Collectors.toList()));
         return colCurDto;
     }
