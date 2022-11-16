@@ -1,5 +1,9 @@
 package com.example.jpa.dto;
 
+import org.springframework.beans.BeanUtils;
+
+import com.example.jpa.entity.Person;
+
 import lombok.Data;
 
 @Data
@@ -11,6 +15,10 @@ public class PersonDto {
 
     private String lastname;
 
-    private Long teamid;
 
+    public Person convertDtoToEntity(){
+        Person person = new Person();
+        BeanUtils.copyProperties(this, person);
+        return person;
+    }
 }

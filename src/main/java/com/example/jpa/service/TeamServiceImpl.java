@@ -2,6 +2,8 @@ package com.example.jpa.service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collector;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Service;
@@ -22,64 +24,17 @@ public class TeamServiceImpl implements TeamService{
     
     @Override
     public TeamDto createTeam(TeamDto teamDto) {
-        Team team = new Team();
-        BeanUtils.copyProperties(teamDto, team);
-        // List<PersonDto> personDtos = teamDto.getPerson();
-        // for(PersonDto pt : personDtos){
-        //     Person person = new Person();
-        //     BeanUtils.copyProperties(pt, person);
-        //     team.addPerson(person);
-        // }
-        List<PersonDto> personDtos = teamDto.getPersons();
-        for(PersonDto pt : personDtos){
-            Person person = new Person();
-            BeanUtils.copyProperties(pt, person);
-            team.getPersons().add(person);
-        }
-        Team newTeam = teamRepository.save(team);
-        TeamDto newTeamDto = new TeamDto();
-        BeanUtils.copyProperties(newTeam, newTeamDto);
-        return newTeamDto;
+        return teamRepository.save(teamDto.convertDtoToEntity()).convertEntityToDto();
     }
 
     @Override
     public Iterable<TeamDto> findAll() {
-        List<TeamDto> newTeamDtos = new ArrayList<>();
-        Iterable<Team> findAll = teamRepository.findAll();
-        for(Team t: findAll){
-            TeamDto newTeamDto = new TeamDto();
-            BeanUtils.copyProperties(t, newTeamDto);
-            List<Person> persons = t.getPersons();
-            List<PersonDto> personDtos = new ArrayList<>();
-            for(Person p: persons){
-                PersonDto pt = new PersonDto();
-                BeanUtils.copyProperties(p, pt);
-                personDtos.add(pt);
-            }
-            newTeamDto.setPersons(personDtos);
-            newTeamDtos.add(newTeamDto);
-        }
-        return newTeamDtos;
+        return teamRepository.findAll().stream().map(Team::convertEntityToDto).collect(Collectors.toList());
     }
 
     @Override
     public Iterable<TeamDto> findByPersonsLastname(String lastname) {
-        List<TeamDto> newTeamDtos = new ArrayList<>();
-        Iterable<Team> findAll = teamRepository.findByPersonsLastname(lastname);
-        for(Team t: findAll){
-            TeamDto newTeamDto = new TeamDto();
-            BeanUtils.copyProperties(t, newTeamDto);
-            List<Person> persons = t.getPersons();
-            List<PersonDto> personDtos = new ArrayList<>();
-            for(Person p: persons){
-                PersonDto pt = new PersonDto();
-                BeanUtils.copyProperties(p, pt);
-                personDtos.add(pt);
-            }
-            newTeamDto.setPersons(personDtos);
-            newTeamDtos.add(newTeamDto);
-        }
-        return newTeamDtos;
+        return teamRepository.findByPersonsLastname(lastname).stream().map(Team::convertEntityToDto).collect(Collectors.toList());
     }
     
 }

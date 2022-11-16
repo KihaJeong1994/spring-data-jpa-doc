@@ -9,6 +9,10 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 
+import org.springframework.beans.BeanUtils;
+
+import com.example.jpa.dto.PersonDto;
+
 import lombok.Data;
 
 @Entity
@@ -28,5 +32,10 @@ public class Person {
     // @JoinColumn(name = "team_id")
     // private Team team;
 
+    public PersonDto convertEntityToDto(){
+        PersonDto pt = new PersonDto();
+        BeanUtils.copyProperties(this, pt);
+        return pt;
+    }
 
 }
