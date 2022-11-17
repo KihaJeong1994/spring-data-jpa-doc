@@ -30,8 +30,8 @@ public class ColCur {
     @Column(name = "colCur_id")
     private Long id;
 
-    @OneToOne(mappedBy = "colCur")
-    private Person person;
+    // @OneToOne(mappedBy = "colCur")
+    // private Person person;
 
     @ManyToOne //다대일, 일대다 관계에서는 항상 "다"쪽이 외래키를 가짐=> "다"쪽인 @ManyToOne은 항상 연관관계의 주인 => mappedBy 속성이 없음
     @JoinColumn(name="classGrp_id")

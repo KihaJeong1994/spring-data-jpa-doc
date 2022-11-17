@@ -29,11 +29,11 @@ public class ClassGrp {
     private Long id;
     private String classGrpName;
 
-    @OneToMany(mappedBy = "classGrp")
-    private List<ColCur> colCurs= new ArrayList<>();
+    // @OneToMany(mappedBy = "classGrp")
+    // private List<ColCur> colCurs= new ArrayList<>();
 
-    @OneToMany(mappedBy = "classGrp")
-    private List<AcaCur> acaCurs= new ArrayList<>();
+    // @OneToMany(mappedBy = "classGrp")
+    // private List<AcaCur> acaCurs= new ArrayList<>();
 
     @ManyToMany
     @JoinTable(name = "ClassGrp_ClassOne",

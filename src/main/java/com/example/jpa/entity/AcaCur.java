@@ -30,8 +30,8 @@ public class AcaCur {
     @Column(name = "acaCur_id")
     private Long id;
 
-    @OneToOne(mappedBy = "acaCur")
-    private Person person;
+    // @OneToOne(mappedBy = "acaCur")
+    // private Person person;
 
     @ManyToOne
     @JoinColumn(name="classGrp_id")
