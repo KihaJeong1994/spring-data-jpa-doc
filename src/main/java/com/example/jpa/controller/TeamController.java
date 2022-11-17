@@ -1,5 +1,6 @@
 package com.example.jpa.controller;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +21,8 @@ public class TeamController {
     private final TeamService teamService;
 
     @GetMapping("")
-    public Iterable<TeamDto> findAll(){
-        return teamService.findAll();
+    public Iterable<TeamDto> findAll(Pageable pageable){
+        return teamService.findAll(pageable);
     }
 
     @GetMapping("/person")

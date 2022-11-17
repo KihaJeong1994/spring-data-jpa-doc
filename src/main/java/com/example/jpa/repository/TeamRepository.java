@@ -2,6 +2,7 @@ package com.example.jpa.repository;
 
 import java.util.List;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.EntityGraph;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.jpa.repository.EntityGraph.EntityGraphType;
@@ -20,5 +21,5 @@ public interface TeamRepository extends CrudRepository<Team,Long>, QueryByExampl
      //@EntityGraph, fetch join, queryDsl 모두 다 multi fetch join(MultipleBagFetchException)문제를 해결할 수 없음
      //@EntityGraph, fetch join으로 MultipleBagFetchException이 발생하지 않는 범위 내에서 쿼리를 조정 후
      // hibernate의 default_batch_fetch_size 기능을 사용해서 in 기능을 통해 쿼리를 줄여야함
-    List<Team> findAll();
+    List<Team> findAll(Pageable pageable);
 }

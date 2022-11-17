@@ -2,6 +2,7 @@ package com.example.jpa.service;
 
 import java.util.stream.Collectors;
 
+import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import com.example.jpa.dto.TeamDto;
@@ -22,8 +23,8 @@ public class TeamServiceImpl implements TeamService{
     }
 
     @Override
-    public Iterable<TeamDto> findAll() {
-        return teamRepository.findAll().stream().map(Team::convertEntityToDto).collect(Collectors.toList());
+    public Iterable<TeamDto> findAll(Pageable pageable) {
+        return teamRepository.findAll(pageable).stream().map(Team::convertEntityToDto).collect(Collectors.toList());
     }
 
     @Override
