@@ -8,4 +8,5 @@ public interface TeamService {
     TeamDto createTeam(TeamDto team);
     Iterable<TeamDto> findAll(Pageable pageable);
     Iterable<TeamDto> findByPersonsLastname(String lastname);
+    void updateTeamById(Long id, TeamDto teamDto);
 }

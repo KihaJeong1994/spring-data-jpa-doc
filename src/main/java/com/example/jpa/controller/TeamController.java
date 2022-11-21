@@ -12,6 +12,9 @@ import com.example.jpa.dto.TeamDto;
 import com.example.jpa.service.TeamService;
 
 import lombok.RequiredArgsConstructor;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+
 
 @RestController
 @RequiredArgsConstructor
@@ -33,5 +36,10 @@ public class TeamController {
     @PostMapping("")
     public TeamDto createTeam(@RequestBody TeamDto team){
         return teamService.createTeam(team);
+    }
+
+    @PutMapping("/{id}")
+    public void updateTeamById(@PathVariable Long id, @RequestBody TeamDto teamDto){
+        teamService.updateTeamById(id,teamDto);
     }
 }
