@@ -11,7 +11,7 @@ import org.springframework.data.repository.query.QueryByExampleExecutor;
 
 import com.example.jpa.entity.Team;
 
-public interface TeamRepository extends CrudRepository<Team,Long>, QueryByExampleExecutor<Team>{
+public interface TeamRepository extends CrudRepository<Team,Long>, QueryByExampleExecutor<Team>,TeamDslRepository{
     List<Team> findByPersonsLastname(String lastname);
     // @Query("SELECT t FROM Team t"
     // +" JOIN FETCH t.persons AS tp LEFT JOIN FETCH tp.colCur AS tpc LEFT JOIN FETCH tpc.classGrp AS tpcc"
@@ -22,5 +22,5 @@ public interface TeamRepository extends CrudRepository<Team,Long>, QueryByExampl
      //@EntityGraph, fetch join, queryDsl 모두 다 multi fetch join(MultipleBagFetchException)문제를 해결할 수 없음
      //@EntityGraph, fetch join으로 MultipleBagFetchException이 발생하지 않는 범위 내에서 쿼리를 조정 후
      // hibernate의 default_batch_fetch_size 기능을 사용해서 in 기능을 통해 쿼리를 줄여야함
-    List<Team> findAll(Pageable pageable);
+    // List<Team> findAll(Pageable pageable);
 }
