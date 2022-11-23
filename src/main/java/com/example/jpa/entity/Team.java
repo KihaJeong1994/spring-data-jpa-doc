@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 import org.springframework.beans.BeanUtils;
 
@@ -33,6 +34,7 @@ public class Team {
     @OneToMany(cascade = CascadeType.ALL)//mappedby 혹은 JoinColumn 설정 시 연관관계 테이블 생성x
     @JoinColumn(name="team_id")
     // @JsonIgnoreProperties({"team"})
+    @OrderColumn(name = "position")
     private List<Person> persons = new ArrayList<>();
 
     public TeamDto convertEntityToDto(){

@@ -12,7 +12,7 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
-import javax.persistence.OneToMany;
+import javax.persistence.OrderColumn;
 
 import org.springframework.beans.BeanUtils;
 
@@ -40,6 +40,7 @@ public class ClassGrp {
     joinColumns = {@JoinColumn(name="classGrp_id")}
     ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
     )
+    @OrderColumn(name = "position")
     List<ClassOne> classOnes = new ArrayList<>();
 
     public ClassGrpDto convertEntityToDto(){

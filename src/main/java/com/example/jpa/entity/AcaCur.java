@@ -13,7 +13,7 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToOne;
+import javax.persistence.OrderColumn;
 
 import org.springframework.beans.BeanUtils;
 
@@ -42,6 +42,7 @@ public class AcaCur {
     joinColumns = {@JoinColumn(name="acaCur_id")}
     ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
     ) //다대다 관계에서 중간에 연결고리 역할을 해줄 joinTable 생성
+    @OrderColumn(name = "position")
     private List<ClassOne> classOnes = new ArrayList<>();
 
     public AcaCurDto convertEntityToDto(){

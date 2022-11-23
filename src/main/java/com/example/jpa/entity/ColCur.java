@@ -14,6 +14,7 @@ import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
+import javax.persistence.OrderColumn;
 
 import org.springframework.beans.BeanUtils;
 
@@ -42,6 +43,7 @@ public class ColCur {
     joinColumns = {@JoinColumn(name="colCur_id")}
     ,inverseJoinColumns = {@JoinColumn(name="classOne_id")}
     )
+    @OrderColumn(name = "position")
     private List<ClassOne> classOnes = new ArrayList<>();
 
     public ColCurDto convertEntityToDto(){
