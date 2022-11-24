@@ -57,7 +57,7 @@ public class TeamDslRepositoryImpl extends QuerydslRepositorySupport implements 
                 .fetchJoin() 
                 .leftJoin(acaCur.classOnes,classOne)
                 .fetchJoin() 
-                .distinct()
+                .distinct() // DB에서는 Distinct 역할 + Application 단에서 불러온 엔티티들 중 pk 값이 같은 엔티티는 중복 제거
                 // .where(team.id.in(JPAExpressions.select(team.id)
                 //                         .from(team)
                 //                         .offset(pageable.getOffset())// sub query에서 작동안함
