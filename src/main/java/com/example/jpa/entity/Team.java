@@ -34,7 +34,7 @@ public class Team {
     @OneToMany(cascade = CascadeType.ALL)//mappedby 혹은 JoinColumn 설정 시 연관관계 테이블 생성x
     @JoinColumn(name="team_id")
     // @JsonIgnoreProperties({"team"})
-    @OrderColumn(name = "position")
+    @OrderColumn(name = "position") //@~ToMany 관계를 여러개 fetch join 하기 위해선 Bag(순서x, 중복허용)을 하나만 사용해야하는데, List타입에 @OrderColumn을 추가해주면 순서o, 중복허용이므로 여러 @~ToMany fetchjoin 가능
     private List<Person> persons = new ArrayList<>();
 
     public TeamDto convertEntityToDto(){
