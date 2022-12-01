@@ -41,8 +41,12 @@ public class Person {
     public PersonDto convertEntityToDto(){
         PersonDto pt = new PersonDto();
         BeanUtils.copyProperties(this, pt);
-        pt.setColCur(this.getColCur().convertEntityToDto());
-        pt.setAcaCur(this.getAcaCur().convertEntityToDto());
+        if(this.getColCur()!=null){
+            pt.setColCur(this.getColCur().convertEntityToDto());
+        }
+        if(this.getAcaCur()!=null){
+            pt.setAcaCur(this.getAcaCur().convertEntityToDto());
+        }
         return pt;
     }
 

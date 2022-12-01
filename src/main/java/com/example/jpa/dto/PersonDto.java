@@ -23,8 +23,12 @@ public class PersonDto {
     public Person convertDtoToEntity(){
         Person person = new Person();
         BeanUtils.copyProperties(this, person);
-        person.setColCur(this.getColCur().convertDtoToEntity());
-        person.setAcaCur(this.getAcaCur().convertDtoToEntity());
+        if(this.getColCur()!=null){
+            person.setColCur(this.getColCur().convertDtoToEntity());
+        }
+        if(this.getAcaCur()!=null){
+            person.setAcaCur(this.getAcaCur().convertDtoToEntity());
+        }
         return person;
     }
 }
